@@ -21,7 +21,7 @@ def frecuencias(cadena):
 numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 def duplica(numeros):
-    return numeros * 2 # La función multiplica el número por 2
+    return numeros * 2
 
 resultado = map(duplica, numeros)
 
@@ -82,7 +82,7 @@ def factorial(n):
 """
 
 def tuplas_a_strings(lista_tupla):
-    return list(map(str, lista_tupla)) # Convierte cada tupla a string y devuelve una lista
+    return list(map(str, lista_tupla))
 
 
 """
@@ -184,4 +184,184 @@ def mayus_minus(caracteres):
 14. Crea una función que retorne las palabras de una lista de palabras que comience con una letra en especifico. Usa la 
 función filter().
 """
+
+def palabras_letra(lista_palabras, letra):
+    def empieza_letra(palabra):
+        if palabra[0].lower() == letra.lower(): # Comprueba si la palabra empieza por la letra especificada
+            return True
+        else:
+            return False
+    return list(filter(empieza_letra, lista_palabras)) # Filtra la lista de palabras que empiezan por la letra especificada
+
+
+"""
+15. Crea una función lambda que sume 3 a cada número de una lista dada.
+"""
+
+suma_tres = lambda X: X + 3
+
+
+"""
+16. Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista de todas las
+palabras que sean más largas que n. Usa la función filter().
+"""
+
+def palabras_longitud(cadena, n):
+    palabras = cadena.split() # Divide la cadena en palabras
+    
+    def es_mas_larga(palabra):
+        if len(palabra) > n: # Comprueba si la longitud de la palabra es mayor que n
+            return True
+        else:
+            return False
+    return list(filter(es_mas_larga, palabras)) # Filtra la lista de palabras que son más largas que n
+
+
+"""
+17. Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2] corresponde al número
+quinientos setenta y dos [572]. Usa la función reduce().
+"""
+
+from functools import reduce
+
+def lista_a_numero(lista_digitos):
+    return reduce(lambda x, y: x * 10 + y, lista_digitos)
+
+
+"""
+18. Escribe un programa en Python que cree una lista de diccionarios que contenga información de estudiantes (nombre, edad, calificación)
+y use la función filter para extraer a los estudiantes con una calificación mayor o igual a 90. Usa la función filter().
+"""
+
+estudiantes = [
+    {"nombre": "Ana", "edad": 20, "calificación": 95},
+    {"nombre": "Carlos", "edad": 22, "calificación": 85},
+    {"nombre": "Elena", "edad": 19, "calificación": 92},
+    {"nombre": "David", "edad": 21, "calificación": 78},
+    {"nombre": "Fernanda", "edad": 23, "calificación": 97}
+]
+
+def calificacion_mayor_90(estudiante):
+    
+    def calificacion_alta(estudiante):
+        if estudiante['calificación'] >= 90: # Comprueba si la calificación del estudiante es mayor o igual a 90
+            return True
+        else:
+            return False
+    return list(filter(calificacion_alta, estudiantes)) # Filtra la lista de estudiantes con calificación mayor o igual a 90
+
+
+"""
+19. Crea una función lambda que filtre los números impares de una lista dada.
+"""
+
+impares = lambda lista: list(filter(lambda x: x % 2 != 0, lista))
+
+
+"""
+20. Para una lista con elementos tipo integer y string obtén una nueva lista sólo con los valores int. Usa la función filter().
+"""
+
+def filtra_enteros(lista):
+    def es_entero(elemento):
+        if type(elemento) == int: # Comprueba si el elemento es un entero
+            return True
+        else:
+            return False
+    return list(filter(es_entero, lista)) # Filtra la lista para obtener solo los enteros
+
+
+"""
+21. Crea una función que calcule el cubo de un número dado mediante una función lambda.
+"""
+
+cubo = lambda x: x ** 3
+
+
+"""
+22. Dada una lista numérica, obtén el producto total de los valores de dicha lista. Usa la función reduce().
+"""
+
+from functools import reduce
+
+producto_lista = reduce(lambda x, y: x * y, lista_numeros)
+
+
+"""
+23. Concatena una lista de palabras. Usa la función reduce().
+"""
+
+from functools import reduce
+
+lista_concatenada = reduce(lambda x, y: x + ' ' + y, lista_palabras)
+
+
+"""
+24. Calcula la diferencia total en los valores de una lista. Usa la función reduce().
+"""
+
+from functools import reduce
+
+diferencia_lista = reduce(lambda x, y: x - y, lista_numeros)
+
+
+"""
+25. Crea una función que cuente el número de caracteres en una cadena de texto dada.
+"""
+
+def contador_caracteres(lista_caracteres):
+    
+    contador = 0
+    for caracter in lista_caracteres: # Recorre cada carácter en la lista de caracteres
+        contador += 1
+    return contador
+
+
+"""
+26. Crea una función lambda que calcule el resto de la división entre dos números dados.
+"""
+
+resto_division = lambda x, y: x % y
+
+
+"""
+27. Crea una función que calcule el promedio de una lista de números.
+"""
+
+def promedio(lista_numeros):
+    return sum(lista_numeros) / len(lista_numeros)
+
+
+"""
+28. Crea una función que busque y devuelva el primer elemento duplicado en una lista dada.
+"""
+
+def primer_duplicado(lista):
+    vistos = set() # Crea un conjunto para almacenar los elementos vistos
+    for elemento in lista:
+        if elemento in vistos: # Si el elemento ya ha sido visto, es el primer duplicado
+            return elemento
+        vistos.add(elemento) # Agrega el elemento al conjunto de vistos
+    return False # Si no se encuentra ningún duplicado, devuelve False
+
+
+"""
+29. Crea una función que convierta una variable en una cadena de texto y enmascare todos los caracteres con el carácter '#',
+excepto los últimos cuatro.
+"""
+
+def enmascarar_cadena(variable):
+    cadena = str(variable)
+    if len(cadena) <= 4:
+        return cadena
+    return '#' * (len(cadena) - 4) + cadena[-4:]
+
+
+"""
+30. Crea una función que determine si dos palabras son anagramas, es decir, si están formadas por las mismas letras 
+pero en diferente orden.
+"""
+
+def son_anagramas(palabra1, palabra2):
+    return sorted(palabra1) == sorted(palabra2) # Compara las palabras ordenadas alfabéticamente para determinar si son anagramas
 
