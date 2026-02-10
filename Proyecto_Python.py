@@ -365,3 +365,65 @@ pero en diferente orden.
 def son_anagramas(palabra1, palabra2):
     return sorted(palabra1) == sorted(palabra2) # Compara las palabras ordenadas alfabéticamente para determinar si son anagramas
 
+
+"""
+31. Crea una función que solicite al usuario ingresar una lista de nombres y luego solicite un nombre para buscar en esa lista.
+Si el nombre está en la lista, se imprime un mensaje indicando que fue encontrado, de lo contrario, se lanza una excepción.
+"""
+
+def buscar_nombre():
+    entrada = input("Ingresa una lista de nombres separados por comas: ") # Pide ingresar una lista de nombres separados por comas
+    nombres = [n.strip() for n in entrada.split(",")] # Crea una lista de nombres eliminando los espacios alrededor de cada nombre
+    nombre_buscar = input("Ingresa el nombre que deseas buscar: ") # Pide ingresar el nombre que se desea buscar
+    
+    if nombre_buscar in nombres: # Comprueba si el nombre buscado está en la lista de nombres
+        print(f'El nombre {nombre_buscar} está en la lista.')
+    else:
+        print(f'El nombre {nombre_buscar} no está en la lista.')
+
+
+"""
+32. Crea una función que tome un nombre completo y una lista de empleados, busque el nombre completo en la lista y devuelve el puesto
+del empleado si está en la lista, de lo contrario, devuelve un mensaje indicando que la persona no trabaja aquí.
+"""
+
+def buscar_empleado(nombre_completo, lista_empleados):
+    for empleado in lista_empleados:
+        if empleado['nombre'] == nombre_completo: # Comprueba si el nombre del empleado coincide con el nombre buscado
+            return empleado['puesto'] # Si se encuentra el empleado
+    return 'La persona no trabaja aquí' # Si no se encuentra el empleado
+
+
+"""
+33. Crea una función lambda que sume elementos correspondientes de dos listas dadas.
+"""
+
+suma_listas = lambda lista1, lista2: list(map(lambda x, y: x + y, lista1, lista2))
+
+
+"""
+34. Crea la clase Arbol , define un árbol genérico con un tronco y ramas como atributos. Los métodos disponibles son: crecer_tronco, 
+nueva_rama, crecer_ramas, quitar_rama e info_arbol. El objetivo es implementar estos métodos para manipular la estructura del árbol.
+Código a seguir:
+1. Inicializar un árbol con un tronco de longitud 1 y una lista vacía de ramas.
+2. Implementar el método crecer_tronco para aumentar la longitud del tronco en una unidad.
+3. Implementar el método nueva_rama para agregar una nueva rama de longitud 1 a la lista de ramas.
+4. Implementar el método crecer_ramas para aumentar en una unidad la longitud de todas las ramas existentes.
+5. Implementar el método quitar_rama para eliminar una rama en una posición específica.
+6. Implementar el método info_arbol para devolver información sobre la longitud del tronco, el número de ramas y las longitudes de las 
+mismas.
+"""
+
+
+
+"""
+Caso de uso:
+1. Crear un árbol.
+2. Hacer crecer el tronco del árbol una unidad.
+3. Añadir una nueva rama al árbol.
+4. Hacer crecer todas las ramas del árbol una unidad.
+5. Añadir dos nuevas ramas al árbol.
+6. Retirar la rama situada en la posición 2.
+7. Obtener información sobre el árbol.
+"""
+
