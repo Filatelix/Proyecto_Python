@@ -20,10 +20,10 @@ def frecuencias(cadena):
 
 numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-def duplica(numeros):
-    return numeros * 2
+def duplica(numero):
+    return numero * 2
 
-resultado = map(duplica, numeros)
+resultado = list(map(duplica, numeros))
 
 
 """
@@ -43,6 +43,9 @@ def lista_inlcuidas(lista_palabras, palabra_objetivo):
 4. Genera una función que calcule la diferencia entre los valores de dos listas. Usa la función map().
 
 """
+
+lista1 = [10, 20, 30]
+lista2 = [1, 2, 3]
 
 def diferencia(x, y):
     return x - y
@@ -130,9 +133,12 @@ def filtro_mascotas(lista_mascotas):
 personalizada y maneja el error adecuadamente.
 """
 
+class ListaVaciaError(Exception):
+    pass
+
 def promedio(lista_numeros):
     if len(lista_numeros) == 0:
-        print('La lista está vacía y no se puede calcular el promedio') # Si la lista está vacía muestra un mensaje de error
+        raise ListaVaciaError('La lista está vacía y no se puede calcular el promedio') # Si la lista está vacía muestra un mensaje de error
     else:
         return sum(lista_numeros) / len(lista_numeros) # Calcula el promedio
 
@@ -241,7 +247,7 @@ estudiantes = [
     {"nombre": "Fernanda", "edad": 23, "calificación": 97}
 ]
 
-def calificacion_mayor_90(estudiante):
+def calificacion_mayor_90(estudiantes):
     
     def calificacion_alta(estudiante):
         if estudiante['calificación'] >= 90: # Comprueba si la calificación del estudiante es mayor o igual a 90
@@ -283,6 +289,8 @@ cubo = lambda x: x ** 3
 """
 
 from functools import reduce
+
+lista_numeros = [1, 2, 3, 4]
 
 producto_lista = reduce(lambda x, y: x * y, lista_numeros)
 
@@ -495,13 +503,13 @@ class UsuarioBanco:
     def retirar_dinero(self, cantidad):
         # 2. Retirar dinero del saldo del usuario
         if cantidad > self.saldo:
-            print("Saldo insuficiente para retirar esa cantidad")
+            raise ValueError("Saldo insuficiente para retirar esa cantidad")
         self.saldo -= cantidad
 
     def transferir_dinero(self, otro_usuario, cantidad):
         # 3. Realizar una transferencia desde otro usuario al usuario actual
         if not self.cuenta_corriente or not otro_usuario.cuenta_corriente:
-            print("Ambos usuarios deben tener cuenta corriente para realizar la transferencia")
+            raise ValueError("Ambos usuarios deben tener cuenta corriente para realizar la transferencia")
         if cantidad > otro_usuario.saldo:
             print("El otro usuario no tiene suficiente saldo para transferir esa cantidad")
         otro_usuario.saldo -= cantidad
@@ -645,6 +653,7 @@ datos (una tupla con los datos necesarios para calcular el área de la figura).
 """
 
 import math
+
 def calcular_area(figura, datos):
     if figura == "rectangulo": # Cálculo del área de un rectángulo: área = base * altura
         if len(datos) != 2:
@@ -655,7 +664,7 @@ def calcular_area(figura, datos):
     elif figura == "circulo": # Cálculo del área de un círculo: área = Pi * radio^2
         if len(datos) != 1:
             return "Error: Para un círculo se necesita un dato (radio)."
-        radio = datos
+        radio = datos[0]
         return math.pi * radio ** 2
 
     elif figura == "triangulo": # Cálculo del área de un triángulo: área = (base * altura) / 2
